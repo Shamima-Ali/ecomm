@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
     res.send({ message: "Hello World!" });
 });
 
+//todo
 const startServer = aync () => {
     try {
         //connection here
