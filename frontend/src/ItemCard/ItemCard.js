@@ -28,7 +28,7 @@ const ItemCard = (item) => {
       </Typography>
     </CardContent>
     <CardActions className='buttoncard'>
-      <Button href="https://instagram.com/shammi_ali?igshid=MmIzYWVlNDQ5Yg==">Contact for purchase</Button>
+      <Button href="www.google.com">Contact for purchase</Button>
     </CardActions>
   </Card>
   )
