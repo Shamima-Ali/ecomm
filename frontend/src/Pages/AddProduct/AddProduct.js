@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react'
+import {React, useState} from 'react'
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { useNavigate } from "react-router";
@@ -23,17 +23,17 @@ const AddProduct = () => {
   async function onSubmit (e) {
     e.preventDefault();
 
-    const newPerson = { ...form };
-    console.log("document.getElementById(): ");
+    const newProduct = { ...form };
+    // console.log("document.getElementById(): ");
 
-    console.log(document.getElementById("fileInput"));
+    // console.log(document.getElementById("fileInput"));
 
     await fetch("http://localhost:8080/api/v1/products", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
      },
-     body: JSON.stringify(newPerson),
+     body: JSON.stringif(newProduct),
    })
    .catch(error => {
      window.alert(error);
@@ -132,11 +132,3 @@ const AddProduct = () => {
 }
 
 export default AddProduct
-
-
-
-    {/* <div>
-      <TextField id="outlined-basic" label="name" variant="outlined"/>
-      <Button type='submit' onSubmit={((e) => console.log("e= ", e))}>submit</Button>
-      {/* <TextField id="outlined-basic" label="price" variant="outlined" />
-      <TextField id="outlined-basic" label="quantity" variant="outlined" /> */}

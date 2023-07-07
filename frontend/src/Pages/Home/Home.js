@@ -1,5 +1,5 @@
 import React from 'react'
-import Products from '../components/Products/Products.js';
+import Products from '../../components/Products/Products.js';
 import { Button } from '@mui/material';
 import './Home.css'
 
