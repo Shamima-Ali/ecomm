@@ -1,16 +1,17 @@
 import React from 'react'
 import Products from '../components/Products/Products.js';
 import { Button } from '@mui/material';
+import './Home.css'
 
 const Home = () => {
   return (
     <>
         <div className='top-section'>
             <header className='title'>This is an ecomm site</header>
-            <Button className='login-button' 
+            <Button className='addproduct-button' 
             variant="contained"
-            href="/login"
-            >Sign Up/ Log In</Button>
+            href="/addProduct"
+            >Add Product</Button>
         </div>
         <Products className='products-body'/>
     </>

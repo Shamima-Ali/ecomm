@@ -5,9 +5,9 @@ const CustomerSchema = new mongoose.Schema({
     email: {type: String, required: false},
     phone: {type: Number, required: false},
     // allProperties: [{ type: mongoose.Schema.Types.ObjectId, red: 'Property' }],
-    allProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
+    // allProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
 })
 
-const customerModel = mongoose.model('Owner', CustomerSchema);
+const customerModel = mongoose.model('Customer', CustomerSchema);
 
 export default customerModel;

@@ -1,0 +1,18 @@
+.add-form{
+    margin-left: 20px;
+    display:list-item;
+}
+
+.title-form{
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    margin-bottom: 32px;
+}
+  
+.form-group{
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+}

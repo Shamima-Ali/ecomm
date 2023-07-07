@@ -3,9 +3,9 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './mongodb/connect.js';
 
-// import ownerRouter from './routes/owner.routes.js'
-// import customerRouter from './routes/customer.routes.js'
-// import productRouter from './routes/product.routes.js'
+import ownerRouter from './routes/owner.routes.js'
+import customerRouter from './routes/customer.routes.js'
+import productRouter from './routes/product.routes.js'
 
 dotenv.config();
 
@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
     res.send({ message: "Hello World! This is a dummy message" });
 });
 
-// app.use('/api/v1/owners', ownerRouter);
-// app.use('/api/v1/customers', customerRouter);
-// app.use('/api/v1/products', productRouter);
+app.use('/api/v1/owners', ownerRouter);
+app.use('/api/v1/customers', customerRouter);
+app.use('/api/v1/products', productRouter);
 
 
 const startServer = async () => {
