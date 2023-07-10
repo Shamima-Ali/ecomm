@@ -6,20 +6,19 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const getAllProducts = async (req, res) => {
-    console.log("them books ");
-    res.json({"hi": "this"});
+    const r = await Product.find({});
+    res.json(r);
 };
-const getProductInfo = async (req, res) => {};
+const getProductInfo = async (req, res) => {
+    const productId = req.params.id;
+    const r = await Product.findById(productId);
+    res.json(r);
+};
+
 const getProductByOwner = async (req, res) => {};
 const createProduct = async (req, res) => {
-    console.log("in createProduct");
     try {
-        const { name, price, quantity, owner, image } = req.body;
-        // console.log("name", name);
-        // console.log("price", price);
-        // console.log("quantity", quantity);
-        // console.log("owner", owner);
-        // console.log("image", image);
+        const { name, description, price, quantity, owner, image } = req.body;
 
         // start a new session
         const session = await mongoose.startSession();
@@ -28,10 +27,11 @@ const createProduct = async (req, res) => {
 
         const newProduct = await Product.create({
             name, 
+            description,
             price, 
             quantity,
             owner,
-            image, 
+            image,
         });
 
         await newProduct.save( {session} );
@@ -42,7 +42,6 @@ const createProduct = async (req, res) => {
         res.status(200).json({ message: 'Product saved successfully'});
 
     } catch(error) {
-        console.log(error);
         res.status(500).json({ message: 'Could not save Product'});
     }
 }

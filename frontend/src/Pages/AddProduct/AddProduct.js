@@ -7,6 +7,7 @@ import './AddProduct.css';
 const AddProduct = () => {
   const [form, setForm] = useState({
     name: "",
+    description: "",
     quantity: "",
     price: "",
     image: "",
@@ -22,18 +23,14 @@ const AddProduct = () => {
 
   async function onSubmit (e) {
     e.preventDefault();
-
     const newProduct = { ...form };
-    // console.log("document.getElementById(): ");
-
-    // console.log(document.getElementById("fileInput"));
 
     await fetch("http://localhost:8080/api/v1/products", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",
      },
-     body: JSON.stringif(newProduct),
+     body: JSON.stringify(newProduct),
    })
    .catch(error => {
      window.alert(error);
@@ -70,6 +67,16 @@ const AddProduct = () => {
          type="text"
          value={form.name}
          onChange={(e) => updateForm({ name: e.target.value })}
+         variant="outlined" />
+       </div>
+
+      {/* Description of Product */}
+      <div className="form-group">
+       <TextField id="outlined-basic" 
+         label="Description" 
+         type="text"
+         value={form.description}
+         onChange={(e) => updateForm({ description: e.target.value })}
          variant="outlined" />
        </div>
 
