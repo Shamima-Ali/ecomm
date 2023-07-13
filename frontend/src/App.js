@@ -1,12 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import Items from './Items/Items';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home/Home.js';
+import AddProduct from './Pages/AddProduct/AddProduct.js';
+import Product from './Pages/Product/Product';
 
 function App() {
   return (
     <>
-      <header className='title'>This is an ecomm site</header>
-      <Items className='itemsbody'/>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={ <Home /> } />
+          <Route path="/home" element={ <Home /> } />
+          <Route path="/addProduct" element={ <AddProduct /> } />
+          <Route path="/product/:id" element={ <Product  /> } />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
