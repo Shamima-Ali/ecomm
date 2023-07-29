@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 import Products from '../../components/Products/Products.js';
-import { Button } from '@mui/material';
+import { Button, colors } from '@mui/material';
 import './Home.css'
 import { GoogleLogin } from '@react-oauth/google';
 
@@ -20,7 +20,7 @@ const Home = () => {
     })
     .then((owner) => {
         setOwner(owner);
-        window.localStorage.setItem("isLoggedIn", true);
+        (owner.length > 0) ? window.localStorage.setItem("isLoggedIn", true) : window.alert("You are not the admin");
     })
    .catch(error => {
      window.alert(error);
@@ -28,7 +28,7 @@ const Home = () => {
    });
   };
 
-console.log(owner);
+// console.log(owner);
 
   const errorMessage = (error) => {
       console.log(error);
@@ -37,17 +37,28 @@ console.log(owner);
   return (
     <>
       <div className='top-section'>
-          <header className='title'>This is an ecomm site</header>
+          <header className='title'>Another Ecomm Site</header>
           { !window.localStorage.getItem("isLoggedIn") && 
-          <GoogleLogin className='addproduct-button' 
-          onSuccess={responseMessage} onError={errorMessage} />
+          // <GoogleLogin className='addproduct-button' 
+          // onSuccess={responseMessage} onError={errorMessage} />
+          <Button className='addproduct-button' 
+          variant="contained"
+          href="/signUp"
+          sx={{
+            backgroundColor: '#887BB0',
+          }}
+          >Log In To Add A Product</Button> 
           }
 
-          { window.localStorage.getItem("isLoggedIn") && 
+          {window.localStorage.getItem("isLoggedIn") && 
           <>
           <Button className='addproduct-button' 
           variant="contained"
-          href="/addProduct">Add Product</Button> 
+          href="/addProduct"
+          sx={{
+            backgroundColor: '#887BB0',
+          }}
+          >Add Product</Button> 
 
           <Button className='addproduct-button' 
           variant="contained"
@@ -58,7 +69,7 @@ console.log(owner);
           </>
           }
       </div>
-      
+
       <Products className='products-body'/>
     </>
   )

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home.js';
 import AddProduct from './Pages/AddProduct/AddProduct.js';
 import Product from './Pages/Product/Product';
+import SignUp from './Pages/SignUp/SignUp';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route index element={ <Home /> } />
           <Route path="/home" element={ <Home /> } />
+          <Route path="/signUp" element={ <SignUp /> } />
           <Route path="/addProduct" element={ <AddProduct /> } />
           <Route path="/product/:id" element={ <Product  /> } />
         </Routes>

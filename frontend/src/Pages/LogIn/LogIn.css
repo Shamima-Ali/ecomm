@@ -1,0 +1,13 @@
+.title-form {
+    font-size: x-large;
+    color: white;
+    font-style: oblique;
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    margin-left: -20px;
+    padding-top: 28px;
+    padding-bottom: 32px;
+    margin-bottom: 20px;
+    background-color: #F4B9B8;
+}

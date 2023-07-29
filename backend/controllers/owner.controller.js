@@ -1,10 +1,50 @@
+import mongoose from 'mongoose';
 import Owner from '../mongodb/models/owner.js';
 import { OAuth2Client } from 'google-auth-library';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
+
+// const bcrypt = require('bcrypt');
+
+// Create a jwt that expires in 3 days
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET_JWT, { expiresIn: '3d'});
+}
 
 const getAllOwners = async (req, res) => {};
 const getOwnerInfoById = async (req, res) => {};
-const createOwner = async (req, res) => {};
+
+const createOwner = async (req, res) => {
+    const { email, password } = req.body;
+
+    // If email exists in db, do NOT create a new user with the same email
+    const exists = await Owner.find({ email: email}) ;
+    if (exists.length > 0) {
+        res.status(400).json({ error: 'email exists in database' });
+        return;
+    }
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    console.log("session to create a new user started");
+
+    // Create salt
+    const salt = await bcrypt.genSalt(10);
+
+    // Create salted password
+    const passHash = await bcrypt.hash(password, salt);
+
+    const newOwner = await Owner.create( {email, password: passHash} );
+
+    await newOwner.save( {session} );
+    await session.commitTransaction();
+    console.log("transaction to create a new user committed");
+
+    const newToken = createToken(newOwner._id);
+    res.status(200).json({ email, newToken });
+};
+
 const editOwnerInfo = async (req, res) => {};
 const verifyOwner = async (req, res) => {
     const jwtToken = req.body.credential;
@@ -21,7 +61,7 @@ const verifyOwner = async (req, res) => {
     // This is a JSON object that contains all the user info
 
     const savedOwner = await Owner.find({ email: payload.email}) ;
-    console.log(savedOwner);
+    // console.log(savedOwner);
 
     if (savedOwner.length > 0) {
         if (payload.email == savedOwner[0].email && payload.given_name == savedOwner[0].name) {
