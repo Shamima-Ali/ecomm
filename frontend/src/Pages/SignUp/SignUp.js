@@ -3,8 +3,10 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { useNavigate } from "react-router";
 import './SignUp.css';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const SignUp = () => {
+  const { dispatch } = useAuthContext();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -28,14 +30,14 @@ const SignUp = () => {
      },
      body: JSON.stringify(newOwner),
    })
+   const json = await response.text();
 
    if (!response.ok) {
-    const errorText = await response.text();
-    window.alert(`${response.status}: ${errorText}`);
+    window.alert(`${response.status}: ${json}`);
   } else {
-
-    const noErrorText = await response.text();
-    console.log(noErrorText);
+    localStorage.setItem('user', JSON.stringify(json));
+    dispatch( {type: 'LOG_IN', payload: json})
+    console.log(json);
   }
    setForm({ email: "" });
    navigate("/");

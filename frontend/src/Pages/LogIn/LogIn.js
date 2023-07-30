@@ -3,8 +3,10 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { useNavigate } from "react-router";
 import './LogIn.css';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 const LogIn = () => {
+  const { dispatch } = useAuthContext();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -19,23 +21,29 @@ const LogIn = () => {
 
   async function onSubmit (e) {
     e.preventDefault();
-//     const newProduct = { ...form };
+    const newOwner = { ...form };
 
-//     await fetch("http://localhost:8080/api/v1/products", {
-//      method: "POST",
-//      headers: {
-//        "Content-Type": "application/json",
-//      },
-//      body: JSON.stringify(newProduct),
-//    })
-//    .catch(error => {
-//      window.alert(error);
-//      return;
-//    });
+    const response = await fetch("http://localhost:8080/api/v1/owners/verifyOwner", {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify(newOwner),
+   })
+   const json = await response.text();
 
-   setForm({ email: ""});
-   navigate("/");
+   if (!response.ok) {
+    window.alert(`${response.status}: ${json}`);
+  } else {
+    localStorage.setItem('user', JSON.stringify(json));
+    dispatch( {type: 'LOG_IN', payload: json})
+    console.log(json);
   }
+   setForm({ email: "" });
+   navigate("/");
+  };
+
+
 
 
   return (
@@ -79,3 +87,24 @@ const LogIn = () => {
 }
 
 export default LogIn
+
+
+  // async function onSubmit (e) {
+  //   e.preventDefault();
+//     const newProduct = { ...form };
+
+//     await fetch("http://localhost:8080/api/v1/products", {
+//      method: "POST",
+//      headers: {
+//        "Content-Type": "application/json",
+//      },
+//      body: JSON.stringify(newProduct),
+//    })
+//    .catch(error => {
+//      window.alert(error);
+//      return;
+//    });
+
+  //  setForm({ email: ""});
+  //  navigate("/");
+  // }
