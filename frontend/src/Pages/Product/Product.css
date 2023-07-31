@@ -1,14 +1,17 @@
 .product-page {
-    margin-left: 20px;
     display:list-item;
 }
 
 .title-page{
     font-size: x-large;
+    color: white;
+    font-style: oblique;
     display: flex;
     justify-content: center;
-    margin-top: 28px;
-    margin-bottom: 32px;
+    padding-top: 28px;
+    padding-bottom: 32px;
+    margin-bottom: 2px;
+    background-color: #F4B9B8;
 }
 
 .product-info{

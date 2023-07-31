@@ -1,13 +1,22 @@
 .top-section{
     display: flex;
-    margin-top: 28px;
-    margin-bottom: 32px;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding-top: 22px;
+    padding-bottom: 32px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
     justify-content: space-between;
+    background-color: #F4B9B8;
   }
   
   .title{
     font-size: x-large;
+    color: white;
+    font-style: oblique;
+    text-decoration: overline;
   }
   
+
+  .userHidden-button{
+    margin-left: 5px;
+  }
