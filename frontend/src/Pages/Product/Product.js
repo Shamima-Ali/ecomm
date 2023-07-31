@@ -9,7 +9,7 @@ const Product = () => {
 
     useEffect(() => {
         const getAPI = () => {
-            const API = `http://localhost:8080/api/v1/products/${id}`;
+            const API = `/api/v1/products/${id}`;
 
             fetch(API)
                 .then((response) => {

@@ -25,7 +25,7 @@ const AddProduct = () => {
     e.preventDefault();
     const newProduct = { ...form };
 
-    await fetch("http://localhost:8080/api/v1/products", {
+    await fetch("/api/v1/products", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",

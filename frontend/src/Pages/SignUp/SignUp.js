@@ -23,7 +23,7 @@ const SignUp = () => {
     e.preventDefault();
     const newOwner = { ...form };
 
-    const response = await fetch("http://localhost:8080/api/v1/owners", {
+    const response = await fetch("/api/v1/owners", {
      method: "POST",
      headers: {
        "Content-Type": "application/json",

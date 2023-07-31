@@ -5,11 +5,12 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 
-// const bcrypt = require('bcrypt');
+dotenv.config();
 
 // Create a jwt that expires in 3 days
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.SECRET_JWT, { expiresIn: '3d'});
+    const secret = process.env.SECRET_JWT || 'sedrtyuiouygfd';
+    return jwt.sign({_id}, secret, { expiresIn: '3d'});
 }
 
 const getAllOwners = async (req, res) => {};

@@ -24,6 +24,17 @@ app.use('/api/v1/products', productRouter);
 
 const startServer = async () => {
     try {
+        // const path = require("path")
+
+        // // ... other app.use middleware setups
+        // app.use(express.static(path.join(__dirname, "client", "build")))
+
+        // // ...
+        // // Right before your app.listen(), add this:
+        // app.get("*", (req, res) => {
+        // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+        // });
+
         connectDB(process.env.MONGODB_URL);
         app.listen(8080, () => console.log('Server started on port http://localhost:8080'));
     } catch (error) {
